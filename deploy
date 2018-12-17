@@ -1,6 +1,6 @@
 -#!/bin/sh     
- ssh -i ~/.ssh/id_jenkins root@vps623573 <<EOF       
- cd /var/www/html/ptut_2018/public_html/PTUT_2018/
+ ssh root@vps623573 <<EOF       
+ cd /var/www/PTUT_2018/
  git pull      
  npm install --production      
  pm2 restart all
