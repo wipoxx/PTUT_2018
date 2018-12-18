@@ -1,10 +1,15 @@
-.Layout-header {
-	background-color: #282c34;
-	min-height: 25vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+.Layout-Component{
+    /*background-color: rgba(255,255,255,0.8);*/
+    background-color : #FFB059;
+    /*margin : 0vh 10vh 3vh 10vh;
+    */padding : 5vh 10vh 5vh 10vh;
+}
+
+.Layout-Fond{
+    /* background: url("../../../Data/FondPage.jpg") no-repeat center center fixed;
+     */background-color : #FFB059;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

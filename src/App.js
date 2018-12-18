@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route, BrowserRouter } from "react-router-dom";
 import HomeLayout from "./components/layouts/HomeLayout";
-import ExampleLayout from "./components/layouts/ExampleLayout";
+import ContactLayout from "./components/layouts/ContactLayout";
+import AboutLayout from "./components/layouts/AboutLayout";
 import Layout from "./components/layouts/Layout/Layout";
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
 			<BrowserRouter>
 				<Layout>
 					<Route exact path="/" component={HomeLayout} />
-					<Route exact path="/exemple" component={ExampleLayout} />
+					<Route exact path="/contact" component={ContactLayout} />
+                    <Route exact path="/about" component={AboutLayout} />
 				</Layout>
 			</BrowserRouter>
 		);
