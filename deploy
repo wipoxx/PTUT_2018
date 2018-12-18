@@ -3,6 +3,7 @@
  cd /var/www/PTUT_2018/
  git pull      
  npm install --production      
+ pm2 start src/App.js
  pm2 restart all
  exit      
 EOF
