@@ -4,7 +4,7 @@ class ExampleLayout extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Page d'exemple</h1>
+				<h1>Page d'exemple TEST</h1>
 			</div>
 		);
 	}
