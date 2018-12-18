@@ -1,0 +1,28 @@
+.header {
+    background-color: white;
+    min-height: 13vh;
+    max-height: 13vh;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 1.5vmin);
+    color: #FF5403;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.headerBackground{
+   /* background: url("../../../Data/FondPage.jpg") no-repeat center center fixed;
+    */background-color : #FF5403;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 13vh;
+    max-height: 13vh;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
