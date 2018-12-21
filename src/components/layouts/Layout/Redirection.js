@@ -10,6 +10,9 @@ class Redirection extends Component {
                     <Link to="/">Accueil</Link>
                 </ul>
                 <ul>
+                    <Link to="/map">Map</Link>
+                </ul>
+                <ul>
                     <Link to="/contact">Contact</Link>
                 </ul>
                 <ul>
