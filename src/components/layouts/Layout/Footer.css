@@ -20,9 +20,8 @@
     font-family: textFont, serif;;
 }
 
-.footerBackground{
-    /* background: url("../../../Data/FondPage.jpg") no-repeat center center fixed;
- */background-color : #FFB059;
+.footer-background{
+    background-color : #FFB059;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;

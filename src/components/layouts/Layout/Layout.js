@@ -6,9 +6,9 @@ import Footer from "./Footer"
 class Layout extends Component {
 	render() {
 		return (
-		    <div className="Layout-Fond">
+		    <div className="layout-fond">
                 <Header/>
-                <div className='Layout-Component'>
+                <div className='layout-component'>
                     {this.props.children}
                 </div>
                 <Footer/>

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 class Redirection extends Component {
     render() {
         return (
-            <li className="Redirection">
+            <li className="redirection">
                 <ul>
                     <Link to="/">Accueil</Link>
                 </ul>

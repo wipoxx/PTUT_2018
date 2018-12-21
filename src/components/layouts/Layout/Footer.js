@@ -4,7 +4,7 @@ import "./Footer.css";
 class Footer extends Component {
     render() {
         return (
-            <div className="footerBackground">
+            <div className="footer-background">
                     <div className="footer">
                         <p>© 2018 Niglow</p>
                     </div>

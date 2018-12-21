@@ -6,8 +6,6 @@ export default class MapLayout extends Component {
 	render() {
 		return (
 			<div>
-				<Formulaire onSubmit={this.handleSubmit}/>
-				<div id="rond">hello</div>
 				<Maps/>
 			</div>
 		)

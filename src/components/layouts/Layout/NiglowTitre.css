@@ -3,7 +3,7 @@
     src: url(../../../Data/Lobster.TTF);
 }
 
-.fontTitreLogo{
+.font-titre-logo{
     font-family : logoFont, serif;;
     font-size : 10vh;
 }

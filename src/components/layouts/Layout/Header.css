@@ -13,9 +13,7 @@
     top: 0;
 }
 
-.headerBackground{
-   /* background: url("../../../Data/FondPage.jpg") no-repeat center center fixed;
-    */background-color : #FF5403;
+.header-background{background-color : #FF5403;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

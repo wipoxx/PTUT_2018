@@ -4,7 +4,7 @@ import "./NiglowTitre.css";
 class NiglowTitre extends Component {
     render() {
         return (
-            <h1 className="fontTitreLogo">NIGLOW</h1>
+            <h1 className="font-titre-logo">NIGLOW</h1>
 
         )
     }

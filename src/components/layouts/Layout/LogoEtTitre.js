@@ -6,7 +6,7 @@ import NiglowTitre from './NiglowTitre.js';
 class LogoEtTitre extends Component {
     render() {
         return (
-            <div className="LogoEtTitre">
+            <div className="logo-et-titre">
                 <Logo/>
                 <NiglowTitre/>
             </div>

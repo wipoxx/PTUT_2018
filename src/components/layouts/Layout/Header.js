@@ -6,7 +6,7 @@ import Redirection from "./Redirection";
 class Header extends Component {
     render() {
         return (
-            <div className="headerBackground">
+            <div className="header-background">
                 <div className="header">
                     <LogoEtTitre/>
                     <Redirection/>

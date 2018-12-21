@@ -1,13 +1,10 @@
-.Layout-Component{
-    /*background-color: rgba(255,255,255,0.8);*/
+.layout-component{
     background-color : #FFB059;
-    /*margin : 0vh 10vh 3vh 10vh;
-    */padding : 5vh 10vh 5vh 10vh;
+    padding : 5vh 10vh 5vh 10vh;
 }
 
-.Layout-Fond{
-    /* background: url("../../../Data/FondPage.jpg") no-repeat center center fixed;
-     */background-color : #FFB059;
+.layout-fond{
+    background-color : #FFB059;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

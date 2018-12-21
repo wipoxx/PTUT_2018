@@ -3,7 +3,7 @@
     src: url(../../../Data/NotoSansJP-Regular.otf);
 }
 
-.Redirection {
+.redirection {
     overflow: hidden;
     display : flex;
     flex-direction: row;
@@ -12,7 +12,7 @@
     padding-right: 12vh;
 }
 
-.Redirection a {
+.redirection a {
     float: left;
     display: block;
     color: #FF5403;
@@ -23,6 +23,6 @@
 }
 
 /* Change color on hover */
-.Redirection a:hover {
+.redirection a:hover {
     color: #FFB059;
 }
