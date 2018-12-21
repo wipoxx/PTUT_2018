@@ -1,0 +1,18 @@
+.logo{
+    position : relative;
+    width : 13.7vh;
+    height: 13.7vh;
+    top : -0.3vh;
+    margin : 2vh;
+}
+
+.logo-et-titre {
+    min-height: 17vh;
+    max-height: 17vh;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 1.5vmin);
+    color: #FF5403;
+}

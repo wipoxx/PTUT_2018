@@ -1,0 +1,12 @@
+.rond{
+    width : 200px;
+    height : 200px;
+    margin : 25px auto;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.map{
+    height: 500px;
+    width : 600px;
+}

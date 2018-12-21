@@ -1,0 +1,9 @@
+@font-face {
+    font-family: logoFont;
+    src: url(../../../Data/Lobster.TTF);
+}
+
+.font-titre-logo{
+    font-family : logoFont, serif;;
+    font-size : 10vh;
+}

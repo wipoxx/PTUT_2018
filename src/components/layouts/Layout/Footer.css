@@ -1,0 +1,30 @@
+@font-face {
+    font-family: textFont;
+    src: url(../../../Data/Roboto-Regular.ttf);
+}
+
+.footer {
+    background-color: white;
+    min-height: 3vh;
+    max-height: 3vh;
+    display : flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+    font-size : 1.8vh;
+    font-family: textFont, serif;;
+}
+
+.footer-background{
+    background-color : #FFB059;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 3vh;
+    max-height: 3vh;
+}

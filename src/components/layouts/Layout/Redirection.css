@@ -1,0 +1,28 @@
+@font-face {
+    font-family: titleFont;
+    src: url(../../../Data/NotoSansJP-Regular.otf);
+}
+
+.redirection {
+    overflow: hidden;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-right: 12vh;
+}
+
+.redirection a {
+    float: left;
+    display: block;
+    color: #FF5403;
+    text-align: center;
+    text-decoration: none;
+    font-family: titleFont, serif;;
+    font-size:3vh;
+}
+
+/* Change color on hover */
+.redirection a:hover {
+    color: #FFB059;
+}
