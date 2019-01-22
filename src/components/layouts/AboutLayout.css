@@ -1,0 +1,94 @@
+@font-face {
+    font-family: TextFont;
+    src: url(../../Data/NotoSansJP-Regular.otf);
+}
+
+.about-fond{
+    background-image: url("../../Data/FondAbout.jpg");
+    margin:-9vh -10vh -5vh -10vh;
+    width: 100vw;
+    height : 84vh;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.about-titre1 {
+    font-family: TextFont, serif;;
+    color : #FFB059;
+    position: relative;
+    text-align: center;
+    top: 25vh;
+    font-size: 5.7vh;
+    font-weight: bold;
+    left : -40vh;
+}
+.about-text1{
+    font-family: TextFont, serif;;
+    position : relative;
+    text-align: center;
+    top : 21.6vh;
+    font-size: 3.3vh;
+    color : #FFB059;
+    left : -40vh;
+}
+
+.about-text2{
+    font-family: TextFont, serif;;
+    position : relative;
+    text-align: center;
+    font-size: 6.56vh;
+    top : 15.5vh;
+    color : #FFB059;
+    left : -40vh;
+}
+
+.about-text3{
+    font-family: TextFont, serif;;
+    position : relative;
+    text-align: center;
+    font-size: 4.11vh;
+    top : 10vh;
+    left : -40vh;
+    color : #FFB059;
+    font-weight: bold;
+}
+
+.about-text4{
+    font-family: TextFont, serif;;
+    position : relative;
+    text-align: center;
+    font-size: 2.285vh;
+    top : 8vh;
+    left : -40vh;
+    color : #FFB059;
+    font-weight: bold;
+}
+
+.about-text5{
+    font-family: TextFont, serif;;
+    position : relative;
+    text-align: center;
+    font-size: 4.435vh;
+    top : 5vh;
+    left : -40vh;
+    color : #FFB059;
+    font-weight: bold;
+}
+
+.about-text6{
+    font-family: TextFont, serif;;
+    position : relative;
+    text-align: center;
+    font-size: 4.7vh;
+    top : 1vh;
+    left : -40vh;
+    color : #FFB059;
+    font-weight: bold;
+}
+b{
+    color : #FF5403;
+}
+

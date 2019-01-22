@@ -32,7 +32,7 @@ class ContactLayout extends Component {
 	render() {
 		return (
             <div className="contact-fond">
-                <h1 className="contacttitre1">une <b> question </b> ? contacter nous !</h1>
+                <h1 className="contacttitre1">Une <b> question </b> ? contacter nous !</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label className="contacttext1">
                         Nom : <input type="text" className="contactwidht" value={this.state.valueNom} onChange={this.handleChangeNom}/>
