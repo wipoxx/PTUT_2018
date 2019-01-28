@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Toggle from "../containers/Toggle";
+import "./Wrapper.css";
 
 class Wrapper extends Component {
     constructor(props) {
         super(props);
-        this.state = {visiblity: ""};
-
+        this.state = {
+            isToggleOn: this.props.isToggleOn
+        }
         // This binding is necessary to make `this` work in the callback
         this.handleClick = this.handleClick.bind(this);
     }
@@ -13,16 +15,18 @@ class Wrapper extends Component {
     render() {
         return (
             <div>
-                <div id="testDiv" visibility={this.props.visiblity}>
-                    <p> test </p>
-                    <Toggle texte='text' onClick={this.handleClick}/>
-                </div>
+                <Toggle texte={this.props.texte} isToggleOn={this.state.isToggleOn} onClick={this.handleClick}/>
+                    <div className={this.state.isToggleOn ? 'wrapper-out' : 'wrapper-in'} id="test">
+                        {this.props.children}
+                    </div>
             </div>
         )
     }
 
     handleClick() {
-        alert("Hello! I am an alert box!!");
+        this.setState(function(prevState) {
+            return {isToggleOn: !prevState.isToggleOn};
+        });
     }
 }
 
