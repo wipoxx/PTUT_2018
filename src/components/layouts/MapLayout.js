@@ -8,6 +8,10 @@ export default class MapLayout extends Component {
 			<div>
 				<Maps/>
 					<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
+				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
+
+				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
+
 			</div>
 		)
 	}
