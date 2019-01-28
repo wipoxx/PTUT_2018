@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Formulaire from "../containers/Formulaire";
+import Wrapper from "../containers/Wrapper";
 import Maps from "../containers/Maps";
 
 export default class MapLayout extends Component {
@@ -7,11 +7,8 @@ export default class MapLayout extends Component {
 		return (
 			<div>
 				<Maps/>
+				<Wrapper/>
 			</div>
 		)
-	}
-
-	handleSubmit = (valeur) => {
-		
 	}
 }
