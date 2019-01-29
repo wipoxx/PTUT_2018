@@ -21,6 +21,7 @@
     "react-sticky": "^6.0.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "sendemail": "^3.4.0",
     "sendmail": "^1.4.1"
   },
   "scripts": {

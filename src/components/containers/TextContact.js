@@ -34,14 +34,14 @@ class TextContact extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} >
                     <div className="contact-flex-column">
-                    <h1 className="contact-titre1">Une <b> question </b> ? contacter nous !</h1>
+                    <h1 className="contact-titre1">Une <b> question </b> ? Contactez nous !</h1>
                     <div className="contact-flex-form">
                         <div className="contact-flex-line">
                             <label className="contact-text1">
                                 Nom : <input type="text" className="contact-input1" value={this.state.valueNom} onChange={this.handleNomChange}/>
                             </label>
                             <label className="contact-text2">
-                                Email : <input type="email" className="contact-input2" value={this.state.valueMail} onChange={this.handleMailChange}/>
+                                Mail : <input type="email" className="contact-input2" value={this.state.valueMail} onChange={this.handleMailChange}/>
                             </label >
                         </div>
                     </div>
