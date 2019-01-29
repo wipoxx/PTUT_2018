@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Formulaire from "../containers/Formulaire";
 import Maps from "../containers/Maps";
 import ListeDeroulante from "../presentation/ListeDeroulante";
-
+import DoughnutWrapped from "../containers/DoughnutWrapped";
 
 export default class MapLayout extends Component {
 	render() {
@@ -26,9 +25,10 @@ export default class MapLayout extends Component {
 			<div>
 				<Maps donneesMap={donnees} />
 				<ListeDeroulante typeActivite={typeActivite} onSumbit={this.handleSubmit}/>
-				
+				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
+				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
+				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
 			</div>
 		)
-	
 	}
 }

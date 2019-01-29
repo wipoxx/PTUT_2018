@@ -1,0 +1,17 @@
+.about-fond{
+    background-image: url("../../Data/FondAbout.jpg");
+    margin:-9vh -10vh -5vh -10vh;
+    width: 100vw;
+    height : 87vh;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.about-text-format{
+    position: relative;
+    left : -35vh;
+    top : 24vh;
+}

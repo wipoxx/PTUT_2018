@@ -1,0 +1,28 @@
+@font-face {
+    font-family: TextFont;
+    src: url(../../Data/NotoSansJP-Regular.otf);
+}
+
+body {
+    overflow-x:hidden;
+}
+
+.contact-fond{
+    background-image: url("../../Data/FondContact.jpg");
+    margin:-9vh -10vh -5vh -10vh;
+    width: 100vw;
+    height : 88vh;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.contact-text{
+    position : relative;
+    top : 12vh;
+    left : 12vh;
+    width: 43.4vw;
+
+}

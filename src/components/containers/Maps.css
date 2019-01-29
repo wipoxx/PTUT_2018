@@ -2,8 +2,6 @@
 .map{
     height: 500px;
     width: 600px;
-    position: relative;
-    outline: medium none currentcolor;
     border: black;
     display: flex;
 }
