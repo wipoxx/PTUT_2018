@@ -9,6 +9,7 @@ const hoverBackgroundColorData= ['#ffb8b8', '#ff4d4d','#fff200','#3ae374','#67e6
 class DoughnutWrapped extends Component {
     constructor(props) {
         super(props);
+        console.log("dans dounuts");
 
         //on remplit le state
         this.state = {

@@ -11,6 +11,10 @@ import 'leaflet/dist/leaflet.css?url=false';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
+import {bindActionCreators} from "redux";
+import * as companieActions from "../../actions/companiesActions"
+import {connect} from "react-redux"
+import {loadCompaniesStatsActivities} from "../../actions/companiesActions";
 
 var myIcon = L.icon({
     iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon-2x.png',
@@ -42,6 +46,7 @@ class Maps extends Component {
             this.state.zoom = this.refs.map.leafletElement.getZoom();
             this.state.lat = this.refs.map.leafletElement.getCenter().lat;
             this.state.lng = this.refs.map.leafletElement.getCenter().lng;
+            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:this.state.zoom});
         }
     }
 
@@ -101,4 +106,10 @@ class Maps extends Component {
     });
   };
 
-export default Maps;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(companieActions, dispatch)
+    };
+}
+
+export default connect(mapDispatchToProps)(Maps);
