@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../../../node_modules/leaflet/dist/leaflet.css";
 import "../../../node_modules/leaflet/dist/leaflet.js";
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, ScaleControl } from 'react-leaflet';
 import "./Maps.css";
 
 class Maps extends Component {
@@ -22,6 +22,7 @@ class Maps extends Component {
          return (
                 <Map className="map" center={position} zoom={this.state.zoom}>
                         <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+                             <ScaleControl position="bottomleft" metric={true} imperial={false} maxWidth={300} />   
                                 <Marker position={position}>
                                       <Popup>A pretty CSSS3 popup !</Popup>
                                 </Marker>
