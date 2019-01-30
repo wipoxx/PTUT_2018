@@ -14,7 +14,6 @@ import 'react-leaflet-markercluster/dist/styles.min.css';
 import {bindActionCreators} from "redux";
 import * as companieActions from "../../actions/companiesActions"
 import {connect} from "react-redux"
-import {loadCompaniesStatsActivities} from "../../actions/companiesActions";
 
 var myIcon = L.icon({
     iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon-2x.png',
@@ -40,13 +39,18 @@ class Maps extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    componentDidMount() {
+            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:100});
+
+    }
+
 
     handleMoveEnd() {
         if(!this.state.flagBlock) {
             this.state.zoom = this.refs.map.leafletElement.getZoom();
             this.state.lat = this.refs.map.leafletElement.getCenter().lat;
             this.state.lng = this.refs.map.leafletElement.getCenter().lng;
-            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:this.state.zoom});
+            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:100});
         }
     }
 
@@ -71,7 +75,7 @@ class Maps extends Component {
                           }
                         </MarkerClusterGroup>
                 </Map>
-                    <Toggle texte="Bloquer la localisation sur la localisation actuelle" isToggleOn={!this.state.flagBlock} onClick={this.handleClick}/>
+                    <Toggle texte="Bloquer la localisation sur l'actuelle" isToggleOn={!this.state.flagBlock} onClick={this.handleClick}/>
                 </div>
         )
         
@@ -112,4 +116,10 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapDispatchToProps)(Maps);
+function mapStateToProps(state){
+    return {
+        activities: state.companiesStats.activities,
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Maps);

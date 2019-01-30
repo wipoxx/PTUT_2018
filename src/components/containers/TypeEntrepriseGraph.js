@@ -1,44 +1,27 @@
 import React, { Component } from "react";
-import DoughnutWrapped from "../layouts/MapLayout";
+import DoughnutWrapped from "./DoughnutWrapped";
 import {connect} from "react-redux"
 
 class TypeEntrepriseGraph extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data:[],
-            labels:[]
-        }
-    }
-
-    componentDidMount() {
-        this.update();
-
-    }
-
     render() {
-        return (
-            <div >
-                <DoughnutWrapped isToggleOn={false} titre="Type d'entreprise" data={this.state.data} labels={this.state.labels}/>
-            </div>
-        );
-    }
-
-    update(){
         let data=[];
         let labels=[];
-        this.props.activities.map(value => {
-            labels.push(value._id);
-            data.push(value.count);
+        this.props.companiesStats.activities.map(value => {
+                labels.push(value._id);
+                data.push(value.count);
             }
+        )
+        return (
+            <div >
+                <DoughnutWrapped isToggleOn={false} titre="Type d'entreprise" data={data} labels={labels}/>
+            </div>
         );
-        this.setState({data,labels});
     }
 }
 
 function mapStateToProps(state){
     return {
-        activities: state.companiesStats.activities,
+        companiesStats: state.companiesStats,
     }
 }
 

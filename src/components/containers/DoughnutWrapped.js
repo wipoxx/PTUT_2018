@@ -9,28 +9,28 @@ const hoverBackgroundColorData= ['#ffb8b8', '#ff4d4d','#fff200','#3ae374','#67e6
 class DoughnutWrapped extends Component {
     constructor(props) {
         super(props);
-        console.log("dans dounuts");
 
         //on remplit le state
         this.state = {
             isToggleOn: this.props.isToggleOn,
-            dataList : {
-                labels: this.props.labels,
-                datasets: [{
-                    data: this.props.data,
-                    backgroundColor: backgroundColorData,
-                    hoverBackgroundColor: hoverBackgroundColorData
-                }]
-            }
+
         }
     }
 
     render() {
+        var dataList = {
+            labels: this.props.labels,
+                datasets: [{
+                data: this.props.data,
+                backgroundColor: backgroundColorData,
+                hoverBackgroundColor: hoverBackgroundColorData
+            }]
+        }
         return (
             <div >
                 <Wrapper isToggleOn={this.state.isToggleOn} texte={this.props.titre}>
                     <div className="doughnut-lenght">
-                        <Doughnut data={this.state.dataList}/>
+                        <Doughnut data={dataList}/>
                     </div>
                 </Wrapper>
             </div>
