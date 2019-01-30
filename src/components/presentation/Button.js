@@ -4,12 +4,12 @@ class Bouton extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            value:''
+            value:'OK'
         }
     }
     render(){
       return(
-            <button type="submit" onClick={this.handleClick.bind(this)}>{this.props.value}</button>
+            <button type="submit" onClick={this.handleClick.bind(this)}>OK</button>
       )
     }
     handleClick = event =>{
