@@ -40,7 +40,8 @@ class Maps extends Component {
     }
 
     componentDidMount() {
-            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:100});
+        this.props.actions.loadCompanies({long:this.state.lng,lat:this.state.lat,range:1000});
+        this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:1000});
 
     }
 
@@ -50,7 +51,8 @@ class Maps extends Component {
             this.state.zoom = this.refs.map.leafletElement.getZoom();
             this.state.lat = this.refs.map.leafletElement.getCenter().lat;
             this.state.lng = this.refs.map.leafletElement.getCenter().lng;
-            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:100});
+            this.props.actions.loadCompanies({long:this.state.lng,lat:this.state.lat,range:1000});
+            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:1000});
         }
     }
 
