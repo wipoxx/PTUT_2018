@@ -1,3 +1,6 @@
 export default {
-    companies: []
+    companies: [],
+    companiesStats: {
+        activities: []
+    }
 }
