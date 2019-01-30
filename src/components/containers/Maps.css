@@ -16,7 +16,6 @@
     line-height: 40px;
     margin-top: -20px;
     margin-left: -20px;
-    border-color: grey;
 
  }
  .markerClusterMedium {
@@ -38,6 +37,7 @@
     font-weight: 900;
     font-family: Open Sans;
     text-transform: uppercase;
+    background-color: #BB5B2E;
  }
  .markerClusterLargeXL {
     border-radius: 70px;
@@ -46,6 +46,7 @@
     font-weight: 900;
     font-family: Open Sans;
     text-transform: uppercase;
+    background-color: #742D0B;
  }
  .markerClusterLabel {
     display: flex;

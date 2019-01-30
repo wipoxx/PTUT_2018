@@ -37,13 +37,13 @@ class Maps extends Component {
                 <Map className="map" center={position} zoom={this.state.zoom} maxZoom={this.state.maxZoom}>
                         <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                         <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
-                               
+                               <Marker position={position}/>
                          {this.props.donneesMap.map(function(donnee){
-                        return <Marker position={[donnee.lat, donnee.long]} icon={myIcon}>
-                          <Popup>{donnee.activite} <br/>{donnee.activite}</Popup> 
-                        </Marker>
-                        })
-                    }
+                            return <Marker position={[donnee.coordonnees[0], donnee.coordonnees[1]]} icon={myIcon}>
+                               <Popup>{donnee.enseigne} <br/>{donnee.activite}</Popup>  
+                            </Marker>
+                            })
+                          }
                         </MarkerClusterGroup>
                 </Map>
         )
@@ -64,7 +64,8 @@ class Maps extends Component {
     }
     else if (count >= 50 && count < 100) {
       size = 'Large';
-    }
+    } else if(count > 100) {
+      size = 'LargeXL';}
     const options = {
       cluster: `markerCluster${size}`,
     };
