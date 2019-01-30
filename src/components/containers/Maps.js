@@ -40,7 +40,7 @@ class Maps extends Component {
                                
                          {this.props.donneesMap.map(function(donnee){
                         return <Marker position={[donnee.lat, donnee.long]} icon={myIcon}>
-                        <Popup>{donnee.nom} <br/>{donnee.activite}</Popup>
+                          <Popup>{donnee.activite} <br/>{donnee.activite}</Popup> 
                         </Marker>
                         })
                     }

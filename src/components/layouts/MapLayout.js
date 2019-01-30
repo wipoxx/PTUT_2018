@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import Maps from "../containers/Maps";
 import ListeDeroulante from "../presentation/ListeDeroulante";
 import DoughnutWrapped from "../containers/DoughnutWrapped";
+import DonneesMap from "../containers/DonneesMap";
 
 export default class MapLayout extends Component {
 	render() {
-		var mesDonnees;
-		var mesDonneesNow;
 		var donnees=[
 			{"id":"1", "activite":"Boulangerie", "nom":"Boulangerie Menetrier", "Adresse":"115 Avenue Roger Salengro, 69100 Villeurbanne", "lat":"45.7784646", "long":"4.879230499999949"},
 			{"id":"2", "activite":"Boulangerie", "nom":"Aux Milles et Une Mie", "Adresse":"38 Avenue Roger Salengro, 69100 Villeurbanne", "lat":"45.7760103", "long":"4.871306499999946"},
@@ -24,6 +23,7 @@ export default class MapLayout extends Component {
 		return (
 			<div>
 				<Maps donneesMap={donnees} />
+				{/* <DonneesMap/> */}
 				<ListeDeroulante typeActivite={typeActivite} onSumbit={this.handleSubmit}/>
 				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
 				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
