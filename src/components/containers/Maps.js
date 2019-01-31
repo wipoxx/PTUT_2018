@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import L from "leaflet";
 import "../../../node_modules/leaflet/dist/leaflet.css";
-// import "../../../node_modules/leaflet/dist/leaflet.js";
 import { Map, TileLayer, Marker, Popup, ScaleControl } from 'react-leaflet';
 import "./Maps.css";
 import Toggle from "./Toggle";
@@ -77,6 +76,7 @@ class Maps extends Component {
                             })
                           }
                         </MarkerClusterGroup>
+
                 </Map>
                     <Toggle texte="Bloquer la localisation sur l'actuelle" isToggleOn={!this.state.flagBlock} onClick={this.handleClick}/>
                 </div>
