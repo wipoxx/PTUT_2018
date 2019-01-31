@@ -7,6 +7,8 @@ import Test from "../containers/Test"
 import ListeDeroulante from "../presentation/ListeDeroulante";
 import DonneesMap from "../containers/DonneesMap";
 import TypeEntrepriseGraph from "../containers/TypeEntrepriseGraph";
+import "./MapLayout.css";
+
 
 export default class MapLayout extends Component {
 	render() {
@@ -21,15 +23,15 @@ export default class MapLayout extends Component {
 			{"id":"2", "activite":"Supermarché"},
 		]
 		return (
-			<div>
+			<div  className="cadre">
 				<DonneesMap/>
 				<ListeDeroulante typeActivite={typeActivite} onSumbit={this.handleSubmit}/>
 				<TypeEntrepriseGraph/>
-				{/*<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
+				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
 				<HorizontalBarWrapped isToggleOn={false} titre="HorizontalBar" data={[65, 59, 80, 81, 56, 55, 40]} labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}/>
 				<LineExampleWrapped isToggleOn={false} titre="Line" data={ [65, 59, 80, 81, 56, 55, 40]} labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}/>
 				<BarWrapped isToggleOn={false} titre="Bar" data={[65, 59, 80, 81, 56, 55, 40]} labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}/>
-			*/}</div>
+			</div>
 		)
 	}
 }

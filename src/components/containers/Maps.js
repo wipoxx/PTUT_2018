@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import L from "leaflet";
 import "../../../node_modules/leaflet/dist/leaflet.css";
 // import "../../../node_modules/leaflet/dist/leaflet.js";
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, ScaleControl } from 'react-leaflet';
 import "./Maps.css";
 import Toggle from "./Toggle";
 import MarkerClusterGroup from 'react-leaflet-markercluster/dist/react-leaflet-markercluster';
@@ -40,8 +40,8 @@ class Maps extends Component {
     }
 
     componentDidMount() {
-        this.props.actions.loadCompanies({long:this.state.lng,lat:this.state.lat,range:1000});
-        this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:1000});
+        this.props.actions.loadCompanies({long:this.state.lng,lat:this.state.lat,range:100});
+        this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:100});
 
     }
 
@@ -51,8 +51,8 @@ class Maps extends Component {
             this.state.zoom = this.refs.map.leafletElement.getZoom();
             this.state.lat = this.refs.map.leafletElement.getCenter().lat;
             this.state.lng = this.refs.map.leafletElement.getCenter().lng;
-            this.props.actions.loadCompanies({long:this.state.lng,lat:this.state.lat,range:1000});
-            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:1000});
+            this.props.actions.loadCompanies({long:this.state.lng,lat:this.state.lat,range:100});
+            this.props.actions.loadCompaniesStatsActivities({long:this.state.lng,lat:this.state.lat,range:100});
         }
     }
 
@@ -67,11 +67,12 @@ class Maps extends Component {
              <div>
                 <Map className="map" center={position} zoom={this.state.zoom} maxZoom={this.state.maxZoom} ref='map'  onMoveEnd={this.handleMoveEnd}>
                         <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+                        <ScaleControl position="bottomleft" metric={true} imperial={false} maxWidth={300} />
                         <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
                                <Marker position={position}/>
                          {this.props.donneesMap.map(function(donnee){
                             return <Marker position={[donnee.coordonnees[0], donnee.coordonnees[1]]} icon={myIcon}>
-                               <Popup>{donnee.enseigne} <br/>{donnee.activite}</Popup>  
+                               <Popup>{donnee.l1_declaree} <br/> {donnee.l4_normalisee}  {donnee.l6_declaree} <br/>{donnee.activite}</Popup>
                             </Marker>
                             })
                           }
