@@ -7,7 +7,7 @@ import React, { Component } from "react";
  class DonneesMap extends Component {
     constructor(props) {
         super(props);
-        this.props.actions.loadCompanies({lat:45.895637,long:4.43252,range:100});
+
     }
 	render() {
 		return (
@@ -17,12 +17,6 @@ import React, { Component } from "react";
 		)
 	}
 }
-
-function mapDispatchToProps(dispatch) {  
-    return {
-      actions: bindActionCreators(companiesAction, dispatch)
-    };
-  }
   
   function mapStateToProps(state){
       return {
@@ -30,4 +24,4 @@ function mapDispatchToProps(dispatch) {
       }
   }
  
-  export default connect(mapStateToProps, mapDispatchToProps)(DonneesMap);
+  export default connect(mapStateToProps)(DonneesMap);
