@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import L from "leaflet";
 import "../../../node_modules/leaflet/dist/leaflet.css";
-// import "../../../node_modules/leaflet/dist/leaflet.js";
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import "../../../node_modules/leaflet/dist/leaflet.js";
+import { Map, TileLayer, Marker, Popup, ScaleControl } from 'react-leaflet';
+
 import "./Maps.css";
 import MarkerClusterGroup from 'react-leaflet-markercluster/dist/react-leaflet-markercluster';
 import 'react-leaflet-markercluster/dist/styles.min.css';
@@ -36,6 +37,7 @@ class Maps extends Component {
          return (
                 <Map className="map" center={position} zoom={this.state.zoom} maxZoom={this.state.maxZoom}>
                         <TileLayer attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+                             <ScaleControl position="bottomleft" metric={true} imperial={false} maxWidth={300} /> 
                         <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
                                <Marker position={position}/>
                          {this.props.donneesMap.map(function(donnee){
@@ -45,6 +47,7 @@ class Maps extends Component {
                             })
                           }
                         </MarkerClusterGroup>
+
                 </Map>
         )
         
