@@ -1,12 +1,11 @@
-.layout-component{
-    background-color : #FFB059;
-    padding : 5vh 10vh 5vh 10vh;
+.layout-component {
+	padding: 2%;
 }
 
-.layout-fond{
-    background-color : #FFB059;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+.layout-fond {
+	background-color: floralwhite;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }

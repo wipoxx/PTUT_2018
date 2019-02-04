@@ -1,37 +1,137 @@
 import React, { Component } from "react";
-import DoughnutWrapped from "../containers/DoughnutWrapped"
-import HorizontalBarWrapped from "../containers/HorizontalBarWrapped";
-import LineExampleWrapped from "../containers/LineExampleWrapped";
-import BarWrapped from "../containers/BarWrapped";
-import Test from "../containers/Test"
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import "../../style/bootstrap.css";
+import * as companieActions from "../../actions/companiesActions";
 import ListeDeroulante from "../presentation/ListeDeroulante";
-import DonneesMap from "../containers/DonneesMap";
-import TypeEntrepriseGraph from "../containers/TypeEntrepriseGraph";
+import GraphWrapper from "../containers/GraphWrapper";
+import Maps from "../containers/Maps";
+import Toggle from "../containers/Toggle";
+
 import "./MapLayout.css";
 
-
-export default class MapLayout extends Component {
+class MapLayout extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			graphType: null,
+			graphLabel: null,
+			lastButtonClicked: null,
+		};
+		this.handleGraphRendering = this.handleGraphRendering.bind(this);
+	}
 	render() {
-		var donnees=[
-			{"id":"5", "activite":"Supermarché", "nom":"Express", "Adresse":"110 Boulevard du 11 Novembre 1918, 69100 Villeurbanne", "lat":"45.776074", "long":"4.8622857000000295"},
-			{"id":"6", "activite":"Supermarché", "nom":"Carrefour Market", "Adresse":"61 Avenue Roger Salengro, 69100 Villeurbanne", "lat":"45.7770772", "long":"4.875454200000036"},
-			{"id":"7", "activite":"Supermarché", "nom":"Casino Shop", "Adresse":"2 Avenue Salvador Allende, 69100 Villeurbanne", "lat":"45.77601399999999", "long":"4.862334000000033"},
-			{"id":"8", "activite":"Supermarché", "nom":"Franprix", "Adresse":"21 Avenue Piaton, 69100 Villeurbanne", "lat":"45.77426620000001", "long":"4.867366899999979"}
-		]
-		var typeActivite=[
-			{"id":"1", "activite":"Boulangerie"},
-			{"id":"2", "activite":"Supermarché"},
-		]
+		var typeActivite = [
+			{ id: "1", activite: "Boulangerie" },
+			{ id: "2", activite: "Supermarché" },
+		];
+		var data = [65, 59, 80, 81, 56, 55, 40];
+		var labels = [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+		];
+		// Pour typesEntreprises
+		// let data = [];
+		// 	let labels = [];
+		// 	this.props.companiesStats.activities.map(value => {
+		// 		labels.push(value._id);
+		// 		data.push(value.count);
+		// 	});
 		return (
-			<div  className="cadre">
-				<DonneesMap/>
-				<ListeDeroulante typeActivite={typeActivite} onSumbit={this.handleSubmit}/>
-				<TypeEntrepriseGraph/>
-				<DoughnutWrapped isToggleOn={false} titre="titreTest" data={[300, 50, 100]} labels={['Red', 'Green', 'Yellow']}/>
-				<HorizontalBarWrapped isToggleOn={false} titre="HorizontalBar" data={[65, 59, 80, 81, 56, 55, 40]} labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}/>
-				<LineExampleWrapped isToggleOn={false} titre="Line" data={ [65, 59, 80, 81, 56, 55, 40]} labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}/>
-				<BarWrapped isToggleOn={false} titre="Bar" data={[65, 59, 80, 81, 56, 55, 40]} labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}/>
+			<div className="layout">
+				<div className="mapLayout">
+					<div className="mapButton">
+						<Toggle
+							texte="Bloquer la localisation sur l'actuelle"
+							isToggleOn={!this.state.flagBlock}
+							onClick={this.props.actions.toggleFlagBlock}
+						/>
+						<ListeDeroulante
+							typeActivite={typeActivite}
+							onSumbit={this.handleSubmit}
+						/>
+					</div>
+					<Maps />
+				</div>
+				<div className="graphs">
+					<div className="graphsButtons">
+						<button
+							className={"btn btn-outline-primary"}
+							onClick={() => {
+								this.handleGraphRendering("Doughnut", 1);
+							}}
+						>
+							Type d'entreprise
+						</button>
+						<button
+							className={" btn btn-outline-primary  "}
+							onClick={() => {
+								this.handleGraphRendering("Bar", 2, "Méga Graphique");
+							}}
+						>
+							Histogramme
+						</button>
+						<button
+							className={" btn btn-outline-primary  "}
+							onClick={() => {
+								this.handleGraphRendering(
+									"HorizontalBar",
+									3,
+									"Super Graphique",
+								);
+							}}
+						>
+							Histogramme horizontal
+						</button>
+						<button
+							className={" btn btn-outline-primary  "}
+							onClick={() => {
+								this.handleGraphRendering("Line", 4, "Ultra Graphique");
+							}}
+						>
+							Courbe
+						</button>
+					</div>
+					<div className="graphRendering">
+						<GraphWrapper
+							graphType={this.state.graphType}
+							data={data}
+							labels={labels}
+							graphLabel={this.state.graphLabel}
+						/>
+					</div>
+				</div>
 			</div>
-		)
+		);
+	}
+	handleSubmit() {}
+
+	handleGraphRendering(type, nb, graphLabel) {
+		this.setState({ lastButtonClicked: nb, graphLabel: graphLabel });
+		this.state.graphType === null || this.state.lastButtonClicked !== nb
+			? this.setState({ graphType: type })
+			: this.setState({ graphType: null });
 	}
 }
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(companieActions, dispatch),
+	};
+}
+
+function mapStateToProps(state) {
+	return {
+		flagBlock: state.map.flagBlock,
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(MapLayout);

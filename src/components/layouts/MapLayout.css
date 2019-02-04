@@ -1,5 +1,39 @@
-.cadre{
-    background-color: floralwhite;
-    margin: -2vh -2vh -2vh -2vh;
-    padding : 2vh 2vh 2vh 2vh;
+/* button {
+	color: "#54F0B9";
+	border-color: "#54F0B9";
+} */
+
+.layout {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.mapLayout {
+	display: flex;
+	flex-direction: column;
+}
+.mapButton {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1%;
+	height: 7vh;
+}
+
+.graphs {
+	display: flex;
+	flex-direction: column;
+}
+
+.graphsButtons {
+	display: flex;
+}
+
+.graphRendering {
+	width: 45vw;
+	height: 69vh;
+}
+.graphsButtons button {
+	width: 25%;
+	margin: 1%;
 }

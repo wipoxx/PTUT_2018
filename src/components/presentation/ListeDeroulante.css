@@ -1,0 +1,4 @@
+.formActivities {
+	display: flex;
+	flex-direction: row;
+}

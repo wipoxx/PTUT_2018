@@ -1,6 +1,9 @@
 export default {
-    companies: [],
-    companiesStats: {
-        activities: []
-    }
-}
+	map: {
+		companies: [],
+		flagBlock: false,
+	},
+	companiesStats: {
+		activities: [],
+	},
+};
