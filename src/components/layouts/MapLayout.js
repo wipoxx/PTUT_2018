@@ -56,7 +56,9 @@ class MapLayout extends Component {
 							onSumbit={this.handleSubmit}
 						/>
 					</div>
-					<Maps />
+					<div>
+						<Maps />
+					</div>
 				</div>
 				<div className="graphs">
 					<div className="graphsButtons">

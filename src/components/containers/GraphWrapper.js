@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Doughnut, HorizontalBar, Bar, Line } from "react-chartjs-2";
-import "./DoughnutWrapped.css";
 
 const backgroundColorData = [
 	"#ffcccc",
@@ -93,7 +92,6 @@ class GraphWrapper extends Component {
 }
 
 function GraphShowing(props) {
-	console.log(props.graphType);
 	var graphComponent;
 	const dataList = {
 		labels: props.labels,
@@ -121,12 +119,9 @@ function GraphShowing(props) {
 			};
 			// dataList.datasets["backgroundColor"] = backgroundColorData;
 			// dataList.datasets["hoverBackgroundColor"] = hoverBackgroundColorData;
-			console.log(dataList);
 			graphComponent = <Doughnut data={dataListDoughnut} />;
 			break;
 		case "Bar":
-			console.log(dataList);
-
 			graphComponent = (
 				<Bar
 					data={dataList}

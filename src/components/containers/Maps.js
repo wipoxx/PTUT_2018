@@ -21,7 +21,6 @@ var myIcon = L.icon({
 class Maps extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			//Latitude
 			lat: 45.764043,
@@ -49,13 +48,9 @@ class Maps extends Component {
 		});
 	}
 
-	handleMoveEnd() {
-		if (!this.props.map.flagBlock) {
-			this.setState({
-				zoom: this.refs.map.leafletElement.getZoom(),
-				lat: this.refs.map.leafletElement.getCenter().lat,
-				long: this.refs.map.leafletElement.getCenter().lng,
-			});
+	//called when a prop or a state is changed
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.lat !== prevState.lat || this.state.lng !== prevState.lng) {
 			this.props.actions.loadCompanies({
 				long: this.state.lng,
 				lat: this.state.lat,
@@ -66,6 +61,26 @@ class Maps extends Component {
 				lat: this.state.lat,
 				range: 100,
 			});
+		}
+	}
+
+	handleMoveEnd() {
+		if (!this.props.map.flagBlock) {
+			this.setState({
+				zoom: this.refs.map.leafletElement.getZoom(),
+				lng: this.refs.map.leafletElement.getCenter().lng,
+				lat: this.refs.map.leafletElement.getCenter().lat,
+			});
+			// this.props.actions.loadCompanies({
+			// 	long: this.state.lng,
+			// 	lat: this.state.lat,
+			// 	range: 100,
+			// });
+			// this.props.actions.loadCompaniesStatsActivities({
+			// 	long: this.state.lng,
+			// 	lat: this.state.lat,
+			// 	range: 100,
+			// });
 		}
 	}
 
@@ -101,12 +116,12 @@ class Maps extends Component {
 					<MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
 						<Marker position={position} />
 						{/* {this.props.donneesMap.map(function(donnee){ */}
-						{this.props.map.companies.map(function(donnee) {
+						{this.props.map.companies.map(function(donnee, index) {
 							return (
 								<Marker
 									position={[donnee.coordonnees[0], donnee.coordonnees[1]]}
 									icon={myIcon}
-									key={donnee.coordonnees[0] + ";" + donnee.coordonnees[1]}
+									key={index}
 								>
 									<Popup>
 										{donnee.l1_declaree} <br /> {donnee.l4_normalisee}{" "}
