@@ -54,7 +54,7 @@ class Maps extends Component {
 			this.setState({
 				zoom: this.refs.map.leafletElement.getZoom(),
 				lat: this.refs.map.leafletElement.getCenter().lat,
-				long: this.refs.map.leafletElement.getCenter().lng,
+				lng: this.refs.map.leafletElement.getCenter().lng,
 			});
 			this.props.actions.loadCompanies({
 				long: this.state.lng,
