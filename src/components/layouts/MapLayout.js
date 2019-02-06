@@ -30,10 +30,10 @@ class MapLayout extends Component {
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
 	render() {
-		var typeActivite = [
-			{ id: "1", activite: "Boulangerie" },
-			{ id: "2", activite: "Supermarché" },
-		];
+		let typeActivite = this.props.companiesAttributes.libactivnat ? this.props.companiesAttributes.libactivnat : [];
+		if(this.state.activity != null && !typeActivite.includes(this.state.activity)){
+			typeActivite.push(this.state.activity);
+		}
 		return (
 			<div className="layout">
 				<div className="mapLayout">
