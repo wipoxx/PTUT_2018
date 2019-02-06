@@ -1,4 +1,5 @@
 import companiesApi from "../api/companiesApi";
+import * as types from "./actionTypes";
 
 export function loadCompanies(params) {
 	return function(dispatch) {
@@ -32,14 +33,31 @@ export function loadCompaniesStatsActivities(params) {
 	};
 }
 
+export function loadCompaniesAttributesDistinctValues(attribute, params) {
+	return function(dispatch) {
+		return companiesApi
+			.getCompaniesAttributeDistinctValues(attribute, params)
+			.then(values => {
+				dispatch(loadCompaniesAttributesDistinctValuesSuccess(attribute, values));
+			})
+			.catch(error => {
+				throw error;
+			});
+	};
+}
+
 export function loadCompaniesSuccess(companies) {
-	return { type: "LOAD_COMPANIES_SUCCESS", companies };
+	return { type: types.LOAD_COMPANIES_SUCCESS, companies };
 }
 
 export function loadCompaniesStatsActivitiesSuccess(activities) {
-	return { type: "LOAD_COMPANIES_STATS_ACTIVITIES_SUCCESS", activities };
+	return { type: types.LOAD_COMPANIES_STATS_ACTIVITIES_SUCCESS, activities };
 }
 
 export function toggleFlagBlockMap() {
-	return { type: "TOGGLE_FLAG_BLOCK_MAP" };
+	return { type: types.TOGGLE_FLAG_BLOCK_MAP };
+}
+
+export function loadCompaniesAttributesDistinctValuesSuccess(attribute, values) {
+	return { type: types.LOAD_COMPANIES_ATTRIBUTES_DISTINCT_VALUES_SUCCESS, attribute, values};
 }
