@@ -17,14 +17,16 @@ class MapLayout extends Component {
 			graphType: null,
 			graphLabel: null,
 			lastButtonClicked: null,
+			activity: null
 		};
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
 	render() {
-		var typeActivite = [
-			{ id: "1", activite: "Boulangerie" },
-			{ id: "2", activite: "Supermarché" },
-		];
+
+		let typeActivite = this.props.companiesAttributes.libactivnat ? this.props.companiesAttributes.libactivnat : [];
+		if(this.state.activity && !typeActivite.includes(this.props.activity)){
+			typeActivite.push(this.state.activity);
+		}
 		var data = [65, 59, 80, 81, 56, 55, 40];
 		var labels = [
 			"January",
@@ -53,11 +55,11 @@ class MapLayout extends Component {
 						/>
 						<ListeDeroulante
 							typeActivite={typeActivite}
-							onSumbit={this.handleSubmit}
+							onSubmit={this.handleActivityChange}
 						/>
 					</div>
 					<div>
-						<Maps />
+						<Maps activity={this.state.activity}/>
 					</div>
 				</div>
 				<div className="graphs">
@@ -111,7 +113,10 @@ class MapLayout extends Component {
 			</div>
 		);
 	}
-	handleSubmit() {}
+
+	handleActivityChange = activity => {
+		this.setState({activity});
+	};
 
 	handleGraphRendering(type, nb, graphLabel) {
 		this.setState({ lastButtonClicked: nb, graphLabel: graphLabel });
@@ -130,6 +135,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		flagBlock: state.map.flagBlock,
+		companiesAttributes: state.companiesAttributes
 	};
 }
 
