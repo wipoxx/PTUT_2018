@@ -16,15 +16,16 @@ class ListeDeroulante extends React.Component {
 					name="ListeActivites"
 					onChange={this.handleChange}
 					className="form-control"
+					value={this.state.value}
 				>
 					<option value="">Choisir une activité</option>
-					{this.props.typeActivite.map(function(monActivite) {
+					{this.props.typeActivite.map(function(monActivite, i) {
 						return (
 							<option
-								key={"id_" + monActivite.activite}
-								value={monActivite.activite}
+								key={i}
+								value={monActivite}
 							>
-								{monActivite.activite}
+								{monActivite}
 							</option>
 						);
 					})}
@@ -39,10 +40,12 @@ class ListeDeroulante extends React.Component {
 			</form>
 		);
 	}
-	handleChange = value => {
+	handleChange = e => {
+		const value = e.target.value;
 		this.setState({ value });
 	};
-	handleClick = () => {
+	handleClick = (e) => {
+		e.preventDefault();
 		this.props.onSubmit(this.state.value);
 	};
 }

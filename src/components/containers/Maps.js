@@ -39,9 +39,14 @@ class Maps extends Component {
 		this.props.actions.loadCompanies({
 			long: this.state.lng,
 			lat: this.state.lat,
-			range: 100,
+			range: 100
 		});
 		this.props.actions.loadCompaniesStatsActivities({
+			long: this.state.lng,
+			lat: this.state.lat,
+			range: 100,
+		});
+		this.props.actions.loadCompaniesAttributesDistinctValues("libactivnat",{
 			long: this.state.lng,
 			lat: this.state.lat,
 			range: 100,
@@ -50,17 +55,25 @@ class Maps extends Component {
 
 	//called when a prop or a state is changed
 	componentDidUpdate(prevProps, prevState) {
-		if (this.state.lat !== prevState.lat || this.state.lng !== prevState.lng) {
+		if (this.state.lat !== prevState.lat || this.state.lng !== prevState.lng || this.props.activity !== prevProps.activity) {
 			this.props.actions.loadCompanies({
 				long: this.state.lng,
 				lat: this.state.lat,
 				range: 100,
+				...(this.props.activity != null && {libactivnat:  this.props.activity})
 			});
-			this.props.actions.loadCompaniesStatsActivities({
-				long: this.state.lng,
-				lat: this.state.lat,
-				range: 100,
-			});
+			if(this.state.lat !== prevState.lat || this.state.lng !== prevState.lng) {
+				this.props.actions.loadCompaniesStatsActivities({
+					long: this.state.lng,
+					lat: this.state.lat,
+					range: 100,
+				});
+				this.props.actions.loadCompaniesAttributesDistinctValues("libactivnat", {
+					long: this.state.lng,
+					lat: this.state.lat,
+					range: 100
+				});
+			}
 		}
 	}
 

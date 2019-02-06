@@ -24,7 +24,8 @@ class MapLayout extends Component {
 			dataEntreprise:[],
 			labelsEntreprise:[],
 			dataGraph: [],
-			labelsGraph: []
+			labelsGraph: [],
+			activity: null
 		};
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
@@ -33,7 +34,6 @@ class MapLayout extends Component {
 			{ id: "1", activite: "Boulangerie" },
 			{ id: "2", activite: "Supermarché" },
 		];
-
 		return (
 			<div className="layout">
 				<div className="mapLayout">
@@ -45,11 +45,11 @@ class MapLayout extends Component {
 						/>
 						<ListeDeroulante
 							typeActivite={typeActivite}
-							onSumbit={this.handleSubmit}
+							onSubmit={this.handleActivityChange}
 						/>
 					</div>
 					<div>
-						<Maps />
+						<Maps activity={this.state.activity}/>
 					</div>
 				</div>
 				<div className="graphs">
@@ -101,7 +101,10 @@ class MapLayout extends Component {
 			</div>
 		);
 	}
-	handleSubmit() {}
+
+	handleActivityChange = activity => {
+		this.setState({activity});
+	};
 
 	handleGraphRendering(type, nb, graphLabel) {
 		this.setState({ lastButtonClicked: nb, graphLabel: graphLabel });
@@ -120,7 +123,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		flagBlock: state.map.flagBlock,
-		companiesStats: state.companiesStats
+		companiesStats: state.companiesStats,
+		companiesAttributes: state.companiesAttributes
 	};
 }
 
