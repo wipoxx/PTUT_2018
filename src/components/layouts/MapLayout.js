@@ -17,29 +17,21 @@ class MapLayout extends Component {
 			graphType: null,
 			graphLabel: null,
 			lastButtonClicked: null,
+			//La liste des datas qui s'affichent
 			dataRender:[],
 			labelsRender:[],
-			dataTypeEntreprise:[],
-			labelsTypeEntreprise:[]
+			//la liste des datas pour le type d'entreprise
+			dataEntreprise:[],
+			labelsEntreprise:[],
+			dataGraph: [],
+			labelsGraph: []
 		};
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
-		this.handleMoveEnd = this.handleMoveEnd.bind(this);
 	}
-
 	render() {
 		var typeActivite = [
 			{ id: "1", activite: "Boulangerie" },
 			{ id: "2", activite: "Supermarché" },
-		];
-		var data = [65, 59, 80, 81, 56, 55, 40];
-		var labels = [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
 		];
 
 		return (
@@ -56,14 +48,16 @@ class MapLayout extends Component {
 							onSumbit={this.handleSubmit}
 						/>
 					</div>
-					<Maps onMoveEnd={this.handleMoveEnd}/>
+					<div>
+						<Maps />
+					</div>
 				</div>
 				<div className="graphs">
 					<div className="graphsButtons">
 						<button
 							className={"btn btn-outline-primary"}
 							onClick={() => {
-								this.handleGraphRendering("Doughnut", 1, "", this.state.dataTypeEntreprise, this.state.labelsTypeEntreprise);
+								this.handleGraphRendering("Doughnut", 1, "");
 							}}
 						>
 							Type d'entreprise
@@ -71,7 +65,7 @@ class MapLayout extends Component {
 						<button
 							className={" btn btn-outline-primary  "}
 							onClick={() => {
-								this.handleGraphRendering("Bar", 2, "Méga Graphique", data, labels);
+								this.handleGraphRendering("Bar", 2, "Méga Graphique");
 							}}
 						>
 							Histogramme
@@ -82,9 +76,7 @@ class MapLayout extends Component {
 								this.handleGraphRendering(
 									"HorizontalBar",
 									3,
-									"Super Graphique",
-									 data,
-									 labels
+									"Super Graphique"
 								);
 							}}
 						>
@@ -93,7 +85,7 @@ class MapLayout extends Component {
 						<button
 							className={" btn btn-outline-primary  "}
 							onClick={() => {
-								this.handleGraphRendering("Line", 4, "Ultra Graphique", data, labels);
+								this.handleGraphRendering("Line", 4, "Ultra Graphique");
 							}}
 						>
 							Courbe
@@ -102,8 +94,6 @@ class MapLayout extends Component {
 					<div className="graphRendering">
 						<GraphWrapper
 							graphType={this.state.graphType}
-							data={this.state.dataRender}
-							labels={this.state.labelsRender}
 							graphLabel={this.state.graphLabel}
 						/>
 					</div>
@@ -111,36 +101,14 @@ class MapLayout extends Component {
 			</div>
 		);
 	}
-
-	handleMoveEnd() {
-		alert("truc");
-	}
-
 	handleSubmit() {}
 
-	handleGraphRendering(type, nb, graphLabel, data, labels) {
-		// Pour typesEntreprises
-		let dataTmp = [];
-		let labelsTmp = [];
-		this.props.companiesStats.activities.map(value => {
-			labelsTmp.push(value._id);
-			dataTmp.push(value.count);
-		});
-
-		this.props.companiesStats.activities.map(value => {
-			this.setState({ dataTypeEntreprise: dataTmp })
-			this.setState({ labelsTypeEntreprise: labelsTmp })
-		});
-
+	handleGraphRendering(type, nb, graphLabel) {
 		this.setState({ lastButtonClicked: nb, graphLabel: graphLabel });
 		this.state.graphType === null || this.state.lastButtonClicked !== nb
 			? this.setState({ graphType: type })
 			: this.setState({ graphType: null });
-		this.setState({dataRender:data});
-		this.setState({labelsRender:labels});
-
 	}
-
 }
 
 function mapDispatchToProps(dispatch) {

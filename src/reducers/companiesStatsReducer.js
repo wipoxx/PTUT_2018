@@ -4,7 +4,14 @@ import initialState from './initialState';
 export default function companiesReducer(state = initialState.companiesStats, action) {
     switch (action.type) {
         case types.LOAD_COMPANIES_STATS_ACTIVITIES_SUCCESS:
-            return Object.assign({}, {activities: action.activities});
+            let labels=[];
+            let data=[];
+            action.activities.map(value => {
+                labels.push(value._id);
+                data.push(value.count);
+            });
+            console.log("data : "+data+" labels : " + labels);
+            return Object.assign({}, {activities: {labels:labels,data:data}});
         default:
             return state;
     }

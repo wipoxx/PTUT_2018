@@ -4,6 +4,6 @@ export default {
 		flagBlock: false,
 	},
 	companiesStats: {
-		activities: [],
+		activities: {labels:[],data:[]},
 	},
 };

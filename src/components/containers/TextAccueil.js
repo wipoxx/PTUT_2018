@@ -15,7 +15,9 @@ class TextAccueil extends React.Component {
 					Grâce à sa carte interactive, trouvez l'emplacement idéal pour votre
 					entreprise.
 				</p>
-				<button className="accueil-button1">Essayer maintenant </button>
+				<a href="/map">
+					<button className="accueil-button1">Essayer maintenant </button>
+				</a>
 			</div>
 		);
 	}

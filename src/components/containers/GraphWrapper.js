@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Doughnut, HorizontalBar, Bar, Line } from "react-chartjs-2";
-import "./DoughnutWrapped.css";
 
 const backgroundColorData = [
 	"#ffcccc",
@@ -72,11 +71,12 @@ class GraphWrapper extends Component {
 
 	render() {
 		// TODO : faire l'appel à l'api ici et faire le map -> labels/data là plutôt que dans maplayout
+		console.log(this.props);
 		return (
 			<GraphShowing
 				graphType={this.props.graphType}
-				data={this.props.data}
-				labels={this.props.labels}
+				data={this.props.companiesStats.activities.data}
+				labels={this.props.companiesStats.activities.labels}
 				graphLabel={this.props.graphLabel}
 			/>
 		);
@@ -93,14 +93,20 @@ class GraphWrapper extends Component {
 }
 
 function GraphShowing(props) {
-	console.log(props.graphType);
 	var graphComponent;
 	const dataList = {
-		labels: props.labels,
+		labels: ["January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+		],
 		datasets: [
 			{
 				label: props.graphLabel,
-				data: props.data,
+				data: [65, 59, 80, 81, 56, 55, 40],
 				backgroundColor: "rgba(2, 171, 111,0.2)",
 				hoverBackgroundColor: "rgba(2, 171, 111,1)",
 			},
@@ -108,12 +114,15 @@ function GraphShowing(props) {
 	};
 	switch (props.graphType) {
 		case "Doughnut":
+				const data= props.data;
+				const labels= props.labels;
+
 			const dataListDoughnut = {
-				labels: props.labels,
+				labels: labels,
 				datasets: [
 					{
 						label: props.graphLabel,
-						data: props.data,
+						data: data,
 						backgroundColor: backgroundColorData,
 						hoverBackgroundColor: hoverBackgroundColorData,
 					},
@@ -121,12 +130,9 @@ function GraphShowing(props) {
 			};
 			// dataList.datasets["backgroundColor"] = backgroundColorData;
 			// dataList.datasets["hoverBackgroundColor"] = hoverBackgroundColorData;
-			console.log(dataList);
 			graphComponent = <Doughnut data={dataListDoughnut} />;
 			break;
 		case "Bar":
-			console.log(dataList);
-
 			graphComponent = (
 				<Bar
 					data={dataList}
