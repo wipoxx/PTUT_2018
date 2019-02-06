@@ -17,9 +17,15 @@ class MapLayout extends Component {
 			graphType: null,
 			graphLabel: null,
 			lastButtonClicked: null,
+			dataRender:[],
+			labelsRender:[],
+			dataTypeEntreprise:[],
+			labelsTypeEntreprise:[]
 		};
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
+		this.handleMoveEnd = this.handleMoveEnd.bind(this);
 	}
+
 	render() {
 		var typeActivite = [
 			{ id: "1", activite: "Boulangerie" },
@@ -35,13 +41,7 @@ class MapLayout extends Component {
 			"June",
 			"July",
 		];
-		// Pour typesEntreprises
-		// let data = [];
-		// 	let labels = [];
-		// 	this.props.companiesStats.activities.map(value => {
-		// 		labels.push(value._id);
-		// 		data.push(value.count);
-		// 	});
+
 		return (
 			<div className="layout">
 				<div className="mapLayout">
@@ -56,14 +56,14 @@ class MapLayout extends Component {
 							onSumbit={this.handleSubmit}
 						/>
 					</div>
-					<Maps />
+					<Maps onMoveEnd={this.handleMoveEnd}/>
 				</div>
 				<div className="graphs">
 					<div className="graphsButtons">
 						<button
 							className={"btn btn-outline-primary"}
 							onClick={() => {
-								this.handleGraphRendering("Doughnut", 1);
+								this.handleGraphRendering("Doughnut", 1, "", this.state.dataTypeEntreprise, this.state.labelsTypeEntreprise);
 							}}
 						>
 							Type d'entreprise
@@ -71,7 +71,7 @@ class MapLayout extends Component {
 						<button
 							className={" btn btn-outline-primary  "}
 							onClick={() => {
-								this.handleGraphRendering("Bar", 2, "Méga Graphique");
+								this.handleGraphRendering("Bar", 2, "Méga Graphique", data, labels);
 							}}
 						>
 							Histogramme
@@ -83,6 +83,8 @@ class MapLayout extends Component {
 									"HorizontalBar",
 									3,
 									"Super Graphique",
+									 data,
+									 labels
 								);
 							}}
 						>
@@ -91,7 +93,7 @@ class MapLayout extends Component {
 						<button
 							className={" btn btn-outline-primary  "}
 							onClick={() => {
-								this.handleGraphRendering("Line", 4, "Ultra Graphique");
+								this.handleGraphRendering("Line", 4, "Ultra Graphique", data, labels);
 							}}
 						>
 							Courbe
@@ -100,8 +102,8 @@ class MapLayout extends Component {
 					<div className="graphRendering">
 						<GraphWrapper
 							graphType={this.state.graphType}
-							data={data}
-							labels={labels}
+							data={this.state.dataRender}
+							labels={this.state.labelsRender}
 							graphLabel={this.state.graphLabel}
 						/>
 					</div>
@@ -109,14 +111,36 @@ class MapLayout extends Component {
 			</div>
 		);
 	}
+
+	handleMoveEnd() {
+		alert("truc");
+	}
+
 	handleSubmit() {}
 
-	handleGraphRendering(type, nb, graphLabel) {
+	handleGraphRendering(type, nb, graphLabel, data, labels) {
+		// Pour typesEntreprises
+		let dataTmp = [];
+		let labelsTmp = [];
+		this.props.companiesStats.activities.map(value => {
+			labelsTmp.push(value._id);
+			dataTmp.push(value.count);
+		});
+
+		this.props.companiesStats.activities.map(value => {
+			this.setState({ dataTypeEntreprise: dataTmp })
+			this.setState({ labelsTypeEntreprise: labelsTmp })
+		});
+
 		this.setState({ lastButtonClicked: nb, graphLabel: graphLabel });
 		this.state.graphType === null || this.state.lastButtonClicked !== nb
 			? this.setState({ graphType: type })
 			: this.setState({ graphType: null });
+		this.setState({dataRender:data});
+		this.setState({labelsRender:labels});
+
 	}
+
 }
 
 function mapDispatchToProps(dispatch) {
@@ -128,6 +152,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		flagBlock: state.map.flagBlock,
+		companiesStats: state.companiesStats
 	};
 }
 

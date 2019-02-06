@@ -78,49 +78,49 @@ class Maps extends Component {
 	render() {
 		//Définition de la position entière
 		const position = [this.state.lat, this.state.lng];
-		return (
-			<div>
-				<Map
-					className="map"
-					center={position}
-					zoom={this.state.zoom}
-					maxZoom={this.state.maxZoom}
-					ref="map"
-					onMoveEnd={this.handleMoveEnd}
-				>
-					<TileLayer
-						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					/>
-					<ScaleControl
-						position="bottomleft"
-						metric={true}
-						imperial={false}
-						maxWidth={300}
-					/>
-					<MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
-						<Marker position={position} />
-						{/* {this.props.donneesMap.map(function(donnee){ */}
-						{this.props.map.companies.map(function(donnee) {
-							return (
-								<Marker
-									position={[donnee.coordonnees[0], donnee.coordonnees[1]]}
-									icon={myIcon}
-									key={donnee.coordonnees[0] + ";" + donnee.coordonnees[1]}
-								>
-									<Popup>
-										{donnee.l1_declaree} <br /> {donnee.l4_normalisee}{" "}
-										{donnee.l6_declaree} <br />
-										{donnee.activite}
-									</Popup>
-								</Marker>
-							);
-						})}
-					</MarkerClusterGroup>
-				</Map>
-			</div>
-		);
-	}
+			return (
+				<div>
+					<Map
+						className="map"
+						center={position}
+						zoom={this.state.zoom}
+						maxZoom={this.state.maxZoom}
+						ref="map"
+						onMoveEnd={this.handleMoveEnd}
+					>
+						<TileLayer
+							attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+						/>
+						<ScaleControl
+							position="bottomleft"
+							metric={true}
+							imperial={false}
+							maxWidth={300}
+						/>
+						<MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
+							<Marker position={position} />
+							{/* {this.props.donneesMap.map(function(donnee){ */}
+							{this.props.map.companies.map(function(donnee) {
+								return (
+									<Marker
+										position={[donnee.coordonnees[0], donnee.coordonnees[1]]}
+										icon={myIcon}
+										key={donnee.coordonnees[0] + ";" + donnee.coordonnees[1]}
+									>
+										<Popup>
+											{donnee.l1_declaree} <br /> {donnee.l4_normalisee}{" "}
+											{donnee.l6_declaree} <br />
+											{donnee.activite}
+										</Popup>
+									</Marker>
+								);
+							})}
+						</MarkerClusterGroup>
+					</Map>
+				</div>
+			)
+		}
 }
 
 const createClusterCustomIcon = cluster => {

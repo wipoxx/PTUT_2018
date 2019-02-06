@@ -6,16 +6,15 @@
 .footer {
 	background-color: white;
 	height: 3vh;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: fixed;
+	position: sticky;
+	left: 0;
 	bottom: 0;
 	width: 100%;
 	color: black;
 	text-align: center;
 	font-size: 1.8vh;
 	font-family: textFont, serif;
+	z-index:4;
 }
 
 /* .footer-background{
