@@ -7,11 +7,13 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
+	z-index:2;
 }
 
 .mapLayout {
 	display: flex;
 	flex-direction: column;
+	z-index:3;
 }
 .mapButton {
 	display: flex;

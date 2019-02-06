@@ -106,8 +106,10 @@ class Maps extends Component {
 	render() {
 		//Définition de la position entière
 		const position = [this.state.lat, this.state.lng];
+		console.log(this.props.map.companies);
 		return (
 			<div>
+				{this.props.map.companies.map ? (
 				<Map
 					className="map"
 					center={position}
@@ -128,7 +130,9 @@ class Maps extends Component {
 					/>
 					<MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
 						<Marker position={position} />
-						{/* {this.props.donneesMap.map(function(donnee){ */}
+						{/* {this.props.donneesMap.map(function(donnee){ */
+						//alert(this.props.map.companies!=null)
+						}
 						{this.props.map.companies.map(function(donnee, index) {
 							return (
 								<Marker
@@ -146,8 +150,11 @@ class Maps extends Component {
 						})}
 					</MarkerClusterGroup>
 				</Map>
+				) : (
+				<p>Problème d'accès au serveur, veuillez nous excuser pour le désagrement</p>
+			)}
 			</div>
-		);
+		)
 	}
 }
 

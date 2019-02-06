@@ -17,33 +17,23 @@ class MapLayout extends Component {
 			graphType: null,
 			graphLabel: null,
 			lastButtonClicked: null,
+			//La liste des datas qui s'affichent
+			dataRender:[],
+			labelsRender:[],
+			//la liste des datas pour le type d'entreprise
+			dataEntreprise:[],
+			labelsEntreprise:[],
+			dataGraph: [],
+			labelsGraph: [],
 			activity: null
 		};
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
 	render() {
-
-		let typeActivite = this.props.companiesAttributes.libactivnat ? this.props.companiesAttributes.libactivnat : [];
-		if(this.state.activity && !typeActivite.includes(this.props.activity)){
-			typeActivite.push(this.state.activity);
-		}
-		var data = [65, 59, 80, 81, 56, 55, 40];
-		var labels = [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
+		var typeActivite = [
+			{ id: "1", activite: "Boulangerie" },
+			{ id: "2", activite: "Supermarché" },
 		];
-		// Pour typesEntreprises
-		// let data = [];
-		// 	let labels = [];
-		// 	this.props.companiesStats.activities.map(value => {
-		// 		labels.push(value._id);
-		// 		data.push(value.count);
-		// 	});
 		return (
 			<div className="layout">
 				<div className="mapLayout">
@@ -67,7 +57,7 @@ class MapLayout extends Component {
 						<button
 							className={"btn btn-outline-primary"}
 							onClick={() => {
-								this.handleGraphRendering("Doughnut", 1);
+								this.handleGraphRendering("Doughnut", 1, "");
 							}}
 						>
 							Type d'entreprise
@@ -86,7 +76,7 @@ class MapLayout extends Component {
 								this.handleGraphRendering(
 									"HorizontalBar",
 									3,
-									"Super Graphique",
+									"Super Graphique"
 								);
 							}}
 						>
@@ -104,8 +94,6 @@ class MapLayout extends Component {
 					<div className="graphRendering">
 						<GraphWrapper
 							graphType={this.state.graphType}
-							data={data}
-							labels={labels}
 							graphLabel={this.state.graphLabel}
 						/>
 					</div>
@@ -135,6 +123,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 	return {
 		flagBlock: state.map.flagBlock,
+		companiesStats: state.companiesStats,
 		companiesAttributes: state.companiesAttributes
 	};
 }

@@ -71,11 +71,12 @@ class GraphWrapper extends Component {
 
 	render() {
 		// TODO : faire l'appel à l'api ici et faire le map -> labels/data là plutôt que dans maplayout
+		console.log(this.props);
 		return (
 			<GraphShowing
 				graphType={this.props.graphType}
-				data={this.props.data}
-				labels={this.props.labels}
+				data={this.props.companiesStats.activities.data}
+				labels={this.props.companiesStats.activities.labels}
 				graphLabel={this.props.graphLabel}
 			/>
 		);
@@ -94,11 +95,18 @@ class GraphWrapper extends Component {
 function GraphShowing(props) {
 	var graphComponent;
 	const dataList = {
-		labels: props.labels,
+		labels: ["January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+		],
 		datasets: [
 			{
 				label: props.graphLabel,
-				data: props.data,
+				data: [65, 59, 80, 81, 56, 55, 40],
 				backgroundColor: "rgba(2, 171, 111,0.2)",
 				hoverBackgroundColor: "rgba(2, 171, 111,1)",
 			},
@@ -106,12 +114,15 @@ function GraphShowing(props) {
 	};
 	switch (props.graphType) {
 		case "Doughnut":
+				const data= props.data;
+				const labels= props.labels;
+
 			const dataListDoughnut = {
-				labels: props.labels,
+				labels: labels,
 				datasets: [
 					{
 						label: props.graphLabel,
-						data: props.data,
+						data: data,
 						backgroundColor: backgroundColorData,
 						hoverBackgroundColor: hoverBackgroundColorData,
 					},
