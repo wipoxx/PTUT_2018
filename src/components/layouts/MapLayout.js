@@ -30,7 +30,7 @@ class MapLayout extends Component {
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
 	render() {
-		let typeActivite = this.props.companiesAttributes.libactivnat ? this.props.companiesAttributes.libactivnat : [];
+		let typeActivite = Array.isArray(this.props.companiesAttributes.libactivnat )? this.props.companiesAttributes.libactivnat : [];
 		if(this.state.activity != null && !typeActivite.includes(this.state.activity)){
 			typeActivite.push(this.state.activity);
 		}

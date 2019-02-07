@@ -10,8 +10,8 @@ body {
 .contact-fond{
     background-image: url("../../Data/FondContact.jpg");
     margin:-9vh -10vh -5vh -10vh;
-    width: 100vw;
-    height : 88vh;
+    width: 104vw;
+    height : 90vh;
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
