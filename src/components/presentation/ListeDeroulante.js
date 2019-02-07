@@ -18,7 +18,7 @@ class ListeDeroulante extends React.Component {
 					className="form-control"
 					value={this.state.value}
 				>
-					<option value="">Choisir une activité</option>
+					<option value="">Toutes les activités</option>
 					{this.props.typeActivite.map(function(monActivite, i) {
 						return (
 							<option
