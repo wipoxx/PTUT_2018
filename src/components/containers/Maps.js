@@ -60,7 +60,7 @@ class Maps extends Component {
 				long: this.state.lng,
 				lat: this.state.lat,
 				range: 100,
-				...(this.props.activity != null && {libactivnat:  this.props.activity})
+				...(this.props.activity !== "" && {libactivnat:  this.props.activity})
 			});
 			if(this.state.lat !== prevState.lat || this.state.lng !== prevState.lng) {
 				this.props.actions.loadCompaniesStatsActivities({
