@@ -130,7 +130,7 @@ function GraphShowing(props) {
 			};
 			// dataList.datasets["backgroundColor"] = backgroundColorData;
 			// dataList.datasets["hoverBackgroundColor"] = hoverBackgroundColorData;
-			graphComponent = <Doughnut data={dataListDoughnut} />;
+			graphComponent = <Doughnut width={100} height={70} data={dataListDoughnut} />;
 			break;
 		case "Bar":
 			graphComponent = (
@@ -145,10 +145,10 @@ function GraphShowing(props) {
 			);
 			break;
 		case "HorizontalBar":
-			graphComponent = <HorizontalBar data={dataList} />;
+			graphComponent = <HorizontalBar width={100} height={75} data={dataList} />;
 			break;
 		case "Line":
-			graphComponent = <Line data={dataList} />;
+			graphComponent = <Line width={100} height={75} data={dataList} />;
 			break;
 		default:
 			graphComponent = <div />;
