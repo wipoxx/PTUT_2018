@@ -30,7 +30,7 @@ class MapLayout extends Component {
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
 	render() {
-		let typeActivite = this.props.companiesAttributes.libactivnat ? this.props.companiesAttributes.libactivnat : [];
+		let typeActivite = Array.isArray(this.props.companiesAttributes.libactivnat) ? this.props.companiesAttributes.libactivnat : [];
 		if(this.state.activity !== "" && !typeActivite.includes(this.state.activity)){
 			typeActivite.push(this.state.activity);
 		}
@@ -45,6 +45,7 @@ class MapLayout extends Component {
 						/>
 						<ListeDeroulante
 							typeActivite={typeActivite}
+							onSumbit={this.handleSubmit}
 							onSubmit={this.handleActivityChange}
 						/>
 					</div>
@@ -55,7 +56,7 @@ class MapLayout extends Component {
 				<div className="graphs">
 					<div className="graphsButtons">
 						<button
-							className={"btn btn-outline-primary"}
+							className={this.state.graphType=="Doughnut" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
 							onClick={() => {
 								this.handleGraphRendering("Doughnut", 1, "");
 							}}
@@ -63,7 +64,7 @@ class MapLayout extends Component {
 							Type d'entreprise
 						</button>
 						<button
-							className={" btn btn-outline-primary  "}
+							className={this.state.graphType=="Bar" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
 							onClick={() => {
 								this.handleGraphRendering("Bar", 2, "Méga Graphique");
 							}}
@@ -71,7 +72,7 @@ class MapLayout extends Component {
 							Histogramme
 						</button>
 						<button
-							className={" btn btn-outline-primary  "}
+							className={this.state.graphType=="HorizontalBar" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
 							onClick={() => {
 								this.handleGraphRendering(
 									"HorizontalBar",
@@ -83,7 +84,7 @@ class MapLayout extends Component {
 							Histogramme horizontal
 						</button>
 						<button
-							className={" btn btn-outline-primary  "}
+							className={this.state.graphType=="Line" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
 							onClick={() => {
 								this.handleGraphRendering("Line", 4, "Ultra Graphique");
 							}}
@@ -97,6 +98,7 @@ class MapLayout extends Component {
 							graphLabel={this.state.graphLabel}
 						/>
 					</div>
+					<p className="chomage-render">Le taux de chomage dans le département actuel est de </p>
 				</div>
 			</div>
 		);

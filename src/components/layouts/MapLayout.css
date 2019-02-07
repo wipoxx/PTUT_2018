@@ -2,6 +2,21 @@
 	color: "#54F0B9";
 	border-color: "#54F0B9";
 } */
+@font-face {
+	font-family: TextFont;
+	src: url(../../Data/NotoSansJP-Regular.otf);
+}
+
+.chomage-render{
+	font-family: TextFont, serif;
+	text-align: center;
+	font-size: 2.5vh;
+	color : #000000;
+	font-weight: bold;
+	margin : 1vh;
+	padding : 0vh;
+	line-height: 4.16vh;
+}
 
 .layout {
 	display: flex;
