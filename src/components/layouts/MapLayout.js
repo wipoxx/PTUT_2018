@@ -31,7 +31,7 @@ class MapLayout extends Component {
 	}
 	render() {
 		let typeActivite = this.props.companiesAttributes.libactivnat ? this.props.companiesAttributes.libactivnat : [];
-		if(this.state.activity && !typeActivite.includes(this.props.activity)){
+		if(this.state.activity != null && !typeActivite.includes(this.state.activity)){
 			typeActivite.push(this.state.activity);
 		}
 		return (
