@@ -39,39 +39,66 @@ class Maps extends Component {
 		this.props.actions.loadCompanies({
 			long: this.state.lng,
 			lat: this.state.lat,
-			range: 100
+			range: 100,
 		});
 		this.props.actions.loadCompaniesStatsActivities({
 			long: this.state.lng,
 			lat: this.state.lat,
 			range: 100,
 		});
-		this.props.actions.loadCompaniesAttributesDistinctValues("libactivnat",{
+		this.props.actions.loadCompaniesAttributesDistinctValues("libactivnat", {
 			long: this.state.lng,
 			lat: this.state.lat,
 			range: 100,
+		});
+		this.props.actions.loadUnemployement({
+			long: this.state.lng,
+			lat: this.state.lat,
+		});
+		this.props.actions.loadRecensement({
+			long: this.state.lng,
+			lat: this.state.lat,
 		});
 	}
 
 	//called when a prop or a state is changed
 	componentDidUpdate(prevProps, prevState) {
-		if (this.state.lat !== prevState.lat || this.state.lng !== prevState.lng || this.props.activity !== prevProps.activity) {
+		if (
+			this.state.lat !== prevState.lat ||
+			this.state.lng !== prevState.lng ||
+			this.props.activity !== prevProps.activity
+		) {
 			this.props.actions.loadCompanies({
 				long: this.state.lng,
 				lat: this.state.lat,
 				range: 100,
-				...(this.props.activity !== "" && {libactivnat:  this.props.activity})
+				...(this.props.activity !== "" && { libactivnat: this.props.activity }),
 			});
-			if(this.state.lat !== prevState.lat || this.state.lng !== prevState.lng) {
+			if (
+				this.state.lat !== prevState.lat ||
+				this.state.lng !== prevState.lng
+			) {
 				this.props.actions.loadCompaniesStatsActivities({
 					long: this.state.lng,
 					lat: this.state.lat,
 					range: 100,
 				});
-				this.props.actions.loadCompaniesAttributesDistinctValues("libactivnat", {
+				this.props.actions.loadCompaniesAttributesDistinctValues(
+					"libactivnat",
+					{
+						long: this.state.lng,
+						lat: this.state.lat,
+						range: 100,
+					},
+				);
+
+				this.props.actions.loadUnemployement({
 					long: this.state.lng,
 					lat: this.state.lat,
-					range: 100
+				});
+				this.props.actions.loadRecensement({
+					long: this.state.lng,
+					lat: this.state.lat,
 				});
 			}
 		}
@@ -106,55 +133,58 @@ class Maps extends Component {
 	render() {
 		//Définition de la position entière
 		const position = [this.state.lat, this.state.lng];
-		console.log(this.props.map.companies);
 		return (
 			<div>
 				{this.props.map.companies.map ? (
-				<Map
-					className="map"
-					center={position}
-					zoom={this.state.zoom}
-					maxZoom={this.state.maxZoom}
-					ref="map"
-					onMoveEnd={this.handleMoveEnd}
-				>
-					<TileLayer
-						attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					/>
-					<ScaleControl
-						position="bottomleft"
-						metric={true}
-						imperial={false}
-						maxWidth={300}
-					/>
-					<MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
-						<Marker position={position} />
-						{/* {this.props.donneesMap.map(function(donnee){ */
-						//alert(this.props.map.companies!=null)
-						}
-						{this.props.map.companies.map(function(donnee, index) {
-							return (
-								<Marker
-									position={[donnee.coordonnees[0], donnee.coordonnees[1]]}
-									icon={myIcon}
-									key={index}
-								>
-									<Popup>
-										{donnee.l1_declaree} <br /> {donnee.l4_normalisee}{" "}
-										{donnee.l6_declaree} <br />
-										{donnee.activite}
-									</Popup>
-								</Marker>
-							);
-						})}
-					</MarkerClusterGroup>
-				</Map>
+					<Map
+						className="map"
+						center={position}
+						zoom={this.state.zoom}
+						maxZoom={this.state.maxZoom}
+						ref="map"
+						onMoveEnd={this.handleMoveEnd}
+					>
+						<TileLayer
+							attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+						/>
+						<ScaleControl
+							position="bottomleft"
+							metric={true}
+							imperial={false}
+							maxWidth={300}
+						/>
+						<MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
+							<Marker position={position} />
+							{
+								/* {this.props.donneesMap.map(function(donnee){ */
+								//alert(this.props.map.companies!=null)
+							}
+							{this.props.map.companies.map(function(donnee, index) {
+								return (
+									<Marker
+										position={[donnee.coordonnees[0], donnee.coordonnees[1]]}
+										icon={myIcon}
+										key={index}
+									>
+										<Popup>
+											{donnee.l1_declaree} <br /> {donnee.l4_normalisee}{" "}
+											{donnee.l6_declaree} <br />
+											{donnee.activite}
+										</Popup>
+									</Marker>
+								);
+							})}
+						</MarkerClusterGroup>
+					</Map>
 				) : (
-				<p>Problème d'accès au serveur, veuillez nous excuser pour le désagrement</p>
-			)}
+					<p>
+						Problème d'accès au serveur, veuillez nous excuser pour le
+						désagrement
+					</p>
+				)}
 			</div>
-		)
+		);
 	}
 }
 

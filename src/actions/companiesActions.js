@@ -38,7 +38,35 @@ export function loadCompaniesAttributesDistinctValues(attribute, params) {
 		return companiesApi
 			.getCompaniesAttributeDistinctValues(attribute, params)
 			.then(values => {
-				dispatch(loadCompaniesAttributesDistinctValuesSuccess(attribute, values));
+				dispatch(
+					loadCompaniesAttributesDistinctValuesSuccess(attribute, values),
+				);
+			})
+			.catch(error => {
+				throw error;
+			});
+	};
+}
+
+export function loadUnemployement(params) {
+	return dispatch => {
+		return companiesApi
+			.getChomageDep(params)
+			.then(values => {
+				dispatch(loadUnemployementSuccess(values));
+			})
+			.catch(error => {
+				throw error;
+			});
+	};
+}
+
+export function loadRecensement(params) {
+	return dispatch => {
+		return companiesApi
+			.getRecensementCom(params)
+			.then(values => {
+				dispatch(loadRecensementSuccess(values));
 			})
 			.catch(error => {
 				throw error;
@@ -58,6 +86,21 @@ export function toggleFlagBlockMap() {
 	return { type: types.TOGGLE_FLAG_BLOCK_MAP };
 }
 
-export function loadCompaniesAttributesDistinctValuesSuccess(attribute, values) {
-	return { type: types.LOAD_COMPANIES_ATTRIBUTES_DISTINCT_VALUES_SUCCESS, attribute, values};
+export function loadCompaniesAttributesDistinctValuesSuccess(
+	attribute,
+	values,
+) {
+	return {
+		type: types.LOAD_COMPANIES_ATTRIBUTES_DISTINCT_VALUES_SUCCESS,
+		attribute,
+		values,
+	};
+}
+
+export function loadUnemployementSuccess(chomage) {
+	return { type: types.LOAD_UNEMPLOYEMENT_SUCCES, chomage };
+}
+
+export function loadRecensementSuccess(recensement) {
+	return { type: types.LOAD_RECENSEMENT_SUCCESS, recensement };
 }

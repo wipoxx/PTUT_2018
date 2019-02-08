@@ -7,14 +7,14 @@
 	src: url(../../Data/NotoSansJP-Regular.otf);
 }
 
-.chomage-render{
+.chomage-render {
 	font-family: TextFont, serif;
 	text-align: center;
-	font-size: 2.5vh;
-	color : #000000;
+	/* font-size: 2.5vh; */
+	color: #000000;
 	font-weight: bold;
-	margin : 1vh;
-	padding : 0vh;
+	margin: 1vh;
+	padding: 0vh;
 	line-height: 4.16vh;
 }
 
@@ -22,13 +22,13 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	z-index:2;
+	z-index: 2;
 }
 
 .mapLayout {
 	display: flex;
 	flex-direction: column;
-	z-index:3;
+	z-index: 3;
 }
 .mapButton {
 	display: flex;
@@ -51,6 +51,6 @@
 	height: 69vh;
 }
 .graphsButtons button {
-	width: 25%;
+	width: 50%;
 	margin: 1%;
 }

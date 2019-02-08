@@ -18,20 +18,26 @@ class MapLayout extends Component {
 			graphLabel: null,
 			lastButtonClicked: null,
 			//La liste des datas qui s'affichent
-			dataRender:[],
-			labelsRender:[],
+			dataRender: [],
+			labelsRender: [],
 			//la liste des datas pour le type d'entreprise
-			dataEntreprise:[],
-			labelsEntreprise:[],
+			dataEntreprise: [],
+			labelsEntreprise: [],
 			dataGraph: [],
 			labelsGraph: [],
-			activity: ""
+			activity: "",
 		};
 		this.handleGraphRendering = this.handleGraphRendering.bind(this);
 	}
+
 	render() {
-		let typeActivite = Array.isArray(this.props.companiesAttributes.libactivnat) ? this.props.companiesAttributes.libactivnat : [];
-		if(this.state.activity !== "" && !typeActivite.includes(this.state.activity)){
+		let typeActivite = Array.isArray(this.props.companiesAttributes.libactivnat)
+			? this.props.companiesAttributes.libactivnat
+			: [];
+		if (
+			this.state.activity !== "" &&
+			!typeActivite.includes(this.state.activity)
+		) {
 			typeActivite.push(this.state.activity);
 		}
 		return (
@@ -45,18 +51,21 @@ class MapLayout extends Component {
 						/>
 						<ListeDeroulante
 							typeActivite={typeActivite}
-							onSumbit={this.handleSubmit}
 							onSubmit={this.handleActivityChange}
 						/>
 					</div>
 					<div>
-						<Maps activity={this.state.activity}/>
+						<Maps activity={this.state.activity} />
 					</div>
 				</div>
 				<div className="graphs">
 					<div className="graphsButtons">
 						<button
-							className={this.state.graphType=="Doughnut" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
+							className={
+								this.state.graphType === "Doughnut"
+									? "btn btn-outline-primary active"
+									: "btn btn-outline-primary"
+							}
 							onClick={() => {
 								this.handleGraphRendering("Doughnut", 1, "");
 							}}
@@ -64,32 +73,16 @@ class MapLayout extends Component {
 							Type d'entreprise
 						</button>
 						<button
-							className={this.state.graphType=="Bar" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
+							className={
+								this.state.graphType === "Bar"
+									? "btn btn-outline-primary active"
+									: "btn btn-outline-primary"
+							}
 							onClick={() => {
-								this.handleGraphRendering("Bar", 2, "Méga Graphique");
+								this.handleGraphRendering("Bar", 2, "Population");
 							}}
 						>
-							Histogramme
-						</button>
-						<button
-							className={this.state.graphType=="HorizontalBar" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
-							onClick={() => {
-								this.handleGraphRendering(
-									"HorizontalBar",
-									3,
-									"Super Graphique"
-								);
-							}}
-						>
-							Histogramme horizontal
-						</button>
-						<button
-							className={this.state.graphType=="Line" ? "btn btn-outline-primary active" : "btn btn-outline-primary"}
-							onClick={() => {
-								this.handleGraphRendering("Line", 4, "Ultra Graphique");
-							}}
-						>
-							Courbe
+							Répartition de la population
 						</button>
 					</div>
 					<div className="graphRendering">
@@ -98,14 +91,49 @@ class MapLayout extends Component {
 							graphLabel={this.state.graphLabel}
 						/>
 					</div>
-					<p className="chomage-render">Le taux de chomage dans le département actuel est de </p>
+
+					{this.props.companiesStats.chomage ? (
+						<p className="chomage-render">
+							Le taux de chomage dans le département actuel est de &nbsp;
+							{this.props.companiesStats.chomage.taux} (
+							{this.props.companiesStats.chomage.dep})
+						</p>
+					) : null}
 				</div>
 			</div>
 		);
 	}
+	// <button
+	// 	className={
+	// 		this.state.graphType === "HorizontalBar"
+	// 			? "btn btn-outline-primary active"
+	// 			: "btn btn-outline-primary"
+	// 	}
+	// 	onClick={() => {
+	// 		this.handleGraphRendering(
+	// 			"HorizontalBar",
+	// 			3,
+	// 			"Super Graphique",
+	// 		);
+	// 	}}
+	// >
+	// 	Histogramme horizontal
+	// </button>
+	// <button
+	// 	className={
+	// 		this.state.graphType === "Line"
+	// 			? "btn btn-outline-primary active"
+	// 			: "btn btn-outline-primary"
+	// 	}
+	// 	onClick={() => {
+	// 		this.handleGraphRendering("Line", 4, "Ultra Graphique");
+	// 	}}
+	// >
+	// 	Courbe
+	// </button>
 
 	handleActivityChange = activity => {
-		this.setState({activity});
+		this.setState({ activity });
 	};
 
 	handleGraphRendering(type, nb, graphLabel) {
@@ -126,7 +154,7 @@ function mapStateToProps(state) {
 	return {
 		flagBlock: state.map.flagBlock,
 		companiesStats: state.companiesStats,
-		companiesAttributes: state.companiesAttributes
+		companiesAttributes: state.companiesAttributes,
 	};
 }
 

@@ -4,7 +4,9 @@ export default {
 		flagBlock: false,
 	},
 	companiesStats: {
-		activities: {labels:[],data:[]},
+		activities: { labels: [], data: [] },
+		chomage: null,
+		recensement: [],
 	},
-	companiesAttributes: {}
+	companiesAttributes: {},
 };

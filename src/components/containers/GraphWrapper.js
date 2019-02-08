@@ -70,42 +70,25 @@ class GraphWrapper extends Component {
 	}
 
 	render() {
-		// TODO : faire l'appel à l'api ici et faire le map -> labels/data là plutôt que dans maplayout
-		console.log(this.props);
 		return (
 			<GraphShowing
 				graphType={this.props.graphType}
-				data={this.props.companiesStats.activities.data}
-				labels={this.props.companiesStats.activities.labels}
+				companiesStats={this.props.companiesStats}
 				graphLabel={this.props.graphLabel}
 			/>
 		);
-		// return (
-		// 	<div>
-		// 		<Wrapper isToggleOn={this.state.isToggleOn} texte={this.props.titre}>
-		// 			<div className="doughnut-lenght">
-		// 				<Doughnut data={dataList} />
-		// 			</div>
-		// 		</Wrapper>
-		// 	</div>
-		// );
 	}
 }
 
 function GraphShowing(props) {
 	var graphComponent;
+	var data, labels;
+	var graphLabel = props.graphLabel;
 	const dataList = {
-		labels: ["January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-		],
+		labels: ["January", "February", "March", "April", "May", "June", "July"],
 		datasets: [
 			{
-				label: props.graphLabel,
+				label: graphLabel,
 				data: [65, 59, 80, 81, 56, 55, 40],
 				backgroundColor: "rgba(2, 171, 111,0.2)",
 				hoverBackgroundColor: "rgba(2, 171, 111,1)",
@@ -114,27 +97,27 @@ function GraphShowing(props) {
 	};
 	switch (props.graphType) {
 		case "Doughnut":
-				const data= props.data;
-				const labels= props.labels;
+			data = props.data;
+			labels = props.labels;
 
 			const dataListDoughnut = {
-				labels: labels,
+				labels: props.companiesStats.activities.labels,
 				datasets: [
 					{
 						label: props.graphLabel,
-						data: data,
+						data: props.companiesStats.activities.data,
 						backgroundColor: backgroundColorData,
 						hoverBackgroundColor: hoverBackgroundColorData,
 					},
 				],
 			};
-			// dataList.datasets["backgroundColor"] = backgroundColorData;
-			// dataList.datasets["hoverBackgroundColor"] = hoverBackgroundColorData;
-			graphComponent = <Doughnut width={100} height={70} data={dataListDoughnut} />;
-			break;
-		case "Bar":
 			graphComponent = (
-				<Bar
+				<Doughnut width={100} height={70} data={dataListDoughnut} />
+			);
+			break;
+		case "HorizontalBar":
+			graphComponent = (
+				<HorizontalBar
 					data={dataList}
 					width={100}
 					height={50}
@@ -144,8 +127,48 @@ function GraphShowing(props) {
 				/>
 			);
 			break;
-		case "HorizontalBar":
-			graphComponent = <HorizontalBar width={100} height={75} data={dataList} />;
+		case "Bar":
+			try {
+				data = props.companiesStats.recensement.nb;
+				labels = props.companiesStats.recensement.groupePersonnes;
+				graphLabel =
+					"Population de la commune (" +
+					props.companiesStats.recensement.codePostal +
+					")";
+			} catch (error) {
+				console.error("Bar graph: " + error);
+			}
+			const dataListHorBar = {
+				labels: labels,
+				datasets: [
+					{
+						label: graphLabel,
+						data: data,
+						backgroundColor: backgroundColorData,
+						hoverBackgroundColor: hoverBackgroundColorData,
+					},
+				],
+			};
+			const options = {
+				scales: {
+					xAxes: [
+						{
+							ticks: {
+								autoSkip: false,
+							},
+						},
+					],
+				},
+			};
+			graphComponent = (
+				<Bar
+					width={100}
+					height={70}
+					data={dataListHorBar}
+					options={options}
+					redraw
+				/>
+			);
 			break;
 		case "Line":
 			graphComponent = <Line width={100} height={75} data={dataList} />;
